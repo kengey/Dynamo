@@ -415,6 +415,7 @@ namespace Dynamo.ViewModels
 
         public IWatchHandler WatchHandler { get; private set; }
 
+        [Obsolete("This Property will be obsoleted in Dynamo 3.0.")]
         public SearchViewModel SearchViewModel { get; private set; }
 
         public PackageManagerClientViewModel PackageManagerClientViewModel { get; private set; }
@@ -535,7 +536,7 @@ namespace Dynamo.ViewModels
             this.WatchHandler = startConfiguration.WatchHandler;
             var pmExtension = model.GetPackageManagerExtension();
             this.PackageManagerClientViewModel = new PackageManagerClientViewModel(this, pmExtension.PackageManagerClient);
-            this.SearchViewModel = new SearchViewModel(this);
+            this.SearchViewModel = null;
 
             // Start page should not show up during test mode.
             this.ShowStartPage = !DynamoModel.IsTestMode;
@@ -1373,7 +1374,7 @@ namespace Dynamo.ViewModels
             {
                 Assembly dynamoAssembly = Assembly.GetExecutingAssembly();
                 string location = Path.GetDirectoryName(dynamoAssembly.Location);
-                string UICulture = CultureInfo.CurrentUICulture.ToString();
+                string UICulture = CultureInfo.CurrentUICulture.Name;
                 string path = Path.Combine(location, "samples", UICulture);
 
                 if (Directory.Exists(path))
@@ -2290,7 +2291,7 @@ namespace Dynamo.ViewModels
                                 string.Format(detailedMessage, file));
                         }
                     }
-                    SearchViewModel.SearchAndUpdateResults();
+                    CurrentSpaceViewModel.InCanvasSearchViewModel.SearchAndUpdateResults();
                 }
                 catch(LibraryLoadFailedException ex)
                 {

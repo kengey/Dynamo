@@ -37,3 +37,5 @@ using System.Windows;
 [assembly: InternalsVisibleTo("CommandLineTests")]
 [assembly: InternalsVisibleTo("Watch3DNodeModelsWpf")]
 [assembly: InternalsVisibleTo("DynamoPerformanceTests")]
+[assembly: InternalsVisibleTo("WorkspaceDependencyViewExtension")]
+[assembly: InternalsVisibleTo("SystemTestServices")]

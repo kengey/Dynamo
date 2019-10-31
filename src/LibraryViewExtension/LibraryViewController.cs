@@ -174,6 +174,7 @@ namespace Dynamo.LibraryUI
             LibraryView view = new LibraryView(model);
             view.Loaded += OnLibraryViewLoaded;
 
+            // TODO: This needs to be more generic, e.g. Window.leftExtensionGrid.Add()
             var sidebarGrid = dynamoWindow.FindName("sidebarGrid") as Grid;
             sidebarGrid.Children.Add(view);
 
@@ -279,7 +280,7 @@ namespace Dynamo.LibraryUI
 
         private NodeSearchElementViewModel FindTooltipContext(String nodeName)
         {
-            return dynamoViewModel.SearchViewModel.FindViewModelForNode(nodeName);
+            return dynamoViewModel.CurrentSpaceViewModel.InCanvasSearchViewModel.FindViewModelForNode(nodeName);
         }
 
         private void ShowTooltip(String nodeName, double y)
